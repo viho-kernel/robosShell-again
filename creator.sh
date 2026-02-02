@@ -50,21 +50,19 @@ do
     aws ec2 describe-instances \
     --filters Name=tag:Name,Values=$name \
     --query 'Reservations[*].Instances[*].PublicIpAddress' 
-    --output text
-    )
+    --output text)
     RECORD_NAME="$ZONE_NAME"
     else
     IP=$(
         aws ec2 describe-instances \
     --filters Name=tag:Name,Values=$name \
     --query 'Reservations[*].Instances[*].PrivateIpAddress' 
-    --output text
-    )
+    --output text)
     RECORD_NAME="$name.$ZONE_NAME"
     fi
     echo -e " IP Address of the instance ${name} is : ${IP} "
 
-    aws route53 change-resource-record-sets --hosted-zone-id Z1XXXXXXXXXXXX --change-batch '
+    aws route53 change-resource-record-sets --hosted-zone-id ${ZONE_ID} --change-batch '
     {
   "Comment": "Updating A record",
   "Changes": [
