@@ -41,13 +41,13 @@ VALIDATE $? "Downloading and installing Nginx service"
 
 systemctl enable nginx &>>$LOG_FILE
 
-systemctl start nginx 
+systemctl start nginx &>>$LOG_FILE
 VALIDATE $? "Enabling and starting the Nginx service"
 
 rm -rf /usr/share/nginx/html/* 
 VALIDATE $? "Removing Default HTML Conent"
 
-curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip &>> ${LOG_FILE}
+curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip &>> $LOG_FILE
 VALIDATE $? "Downloading Code"
 
 cd /usr/share/nginx/html 
@@ -58,7 +58,7 @@ VALIDATE $? "Unzipping frontend"
 cp $SCRIPT_DIR/frontend.conf /etc/nginx/nginx.conf &>>$LOG_FILE
 VALIDATE $? "CREATING Reverse Proxy"
 
-systemctl restart nginx 
+systemctl restart nginx &>>$LOG_FILE
 VALIDATE $? "Restarting Catalogue" 
 
 systemctl status nginx &>>$LOG_FILE
