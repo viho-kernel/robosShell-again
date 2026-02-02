@@ -33,7 +33,8 @@ VALIDATE(){
 
 }
   
-cp $SCRIPT_DIR/mongo.conf /etc/yum.repos.d/mongo.repo
+cp $SCRIPT_DIR/mongo.repo /etc/yum.repos.d/mongo.repo &>> $LOG_FILE
+VALIDATE $? "Copying Mongo Repo"
 
 dnf install mongodb-org -y &>>${LOG_FILE}
 VALIDATE $? "Installing MongoDB Server"
@@ -44,6 +45,6 @@ VALIDATE $? "Enabling and starting mongodb service."
 
 sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
 
-
 systemctl restart mongod &>>${LOG_FILE}
+
 VALIDATE $? "Restaring mongodb service"
