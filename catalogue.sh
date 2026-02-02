@@ -8,7 +8,7 @@ C="\e[36m"
 M="\e[35m"
 N="\e[0m"
 
-SCRIPT_DIR=${pwd}
+SCRIPT_DIR=$pwd
 USER_ID=$(id -u)
 LOG_FOLDER="/var/log/Roboshop-Again-logs"
 LOG_FILE="${LOG_FOLDER}/$0.log"
@@ -68,7 +68,7 @@ VALIDATE $? "Unzipping the Code"
 npm install &>>$LOG_FILE
 VALIDATE $? "Installing Dependencies"
 
-cp $SCRIPT_DIR/catalogue.service /etc/systemd/system/catalogue.service 
+cp $SCRIPT_DIR/catalogue.service /etc/systemd/system/catalogue.service
 VALIDATE $? "Created systemctl service"
 
 systemctl daemon-reload
