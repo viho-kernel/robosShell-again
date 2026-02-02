@@ -20,7 +20,7 @@ do
       echo " ${name} instance already exist. Hence, skippping instance creation.."
   else
        echo " ${name} instance is not there. Hence, creating the instance... "
-    if [ $name == "mongodb"] || [ $name == "mysql"] || [ $name == "shipping"]; then
+    if [ $name == "mongodb" ] || [ $name == "mysql" ] || [ $name == "shipping" ]; then
      INSTANCE_ID=$(
     aws ec2 run-instances \
     --image-id $AMI_ID \
@@ -30,7 +30,7 @@ do
     --query 'Instances[0].InstanceId' \
     --output text
      )
-    elif [ $name == "catalogue"] || [ $name == "frontend"] || [ $name == "redis"] || [ $name == "user"] || [ $name == "cart"] || [ $name == "rabbitmq"] || [ $name == "payment"] || [ $name == "dispatch"] ; then
+    elif [ $name == "catalogue" ] || [ $name == "frontend" ] || [ $name == "redis" ] || [ $name == "user" ] || [ $name == "cart" ] || [ $name == "rabbitmq" ] || [ $name == "payment" ] || [ $name == "dispatch" ] ; then
     INSTANCE_ID=$(
     aws ec2 run-instances \
     --image-id $AMI_ID \
