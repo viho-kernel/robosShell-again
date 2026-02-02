@@ -26,7 +26,7 @@ do
     --image-id $AMI_ID \
     --instance-type t3.medium \
     --security-group-ids $SG_ID \
-    --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=$name}]' \
+    --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$name}]" \
     --query 'Instances[0].InstanceId' \
     --output text
      )
@@ -34,9 +34,9 @@ do
     INSTANCE_ID=$(
     aws ec2 run-instances \
     --image-id $AMI_ID \
-    --instance-type t3.medium \
+    --instance-type t3.micro \
     --security-group-ids $SG_ID \
-    --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=$name}]' \
+    --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$name}]" \
     --query 'Instances[0].InstanceId' \
     --output text
     )
@@ -84,7 +84,7 @@ do
 
 '
 
-echo "Instance ${name} is succesfully created. And IP Address $IP is assigned to it also $RECORD_NAME has been updated"
+echo "Instance ${name} is succesfully created. And IP Address ${IP} is assigned to it also ${RECORD_NAME} has been updated"
       
 
 done
