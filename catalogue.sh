@@ -69,13 +69,15 @@ VALIDATE $? "Unzipping the Code"
 npm install &>>${LOG_FILE}
 VALIDATE $? "Installing Dependencies"
 
-cp $SCRIPT_DIR/catalogue.conf /etc/systemd/system/catalogue.service 
+cp $SCRIPT_DIR/catalogue.service /etc/systemd/system/catalogue.service 
 VALIDATE $? "Created systemctl service"
 
 systemctl daemon-reload
 systemctl enable catalogue  &>>${LOG_FILE}
 systemctl start catalogue
 VALIDATE $? "Starting and enabling catalogue"
+
+cp $SCRIPT_DIR/mongo.repo /etc/yum.repos.d/mongo.repo
 
 dnf install mongodb-mongosh -y &>>${LOG_FILE}
 
