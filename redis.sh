@@ -14,8 +14,6 @@ LOG_FOLDER="/var/log/Roboshop-Again-logs"
 LOG_FILE="${LOG_FOLDER}/$0.log"
 MONGO_HOST="mongodb.opsora.space"
 
-mkdir -p ${LOG_FOLDER}
-
 if [ ${USER_ID} -ne 0 ]; then
    echo -e " $R User is not a Root use. Kindly run the code as a Root use... $N" | tee -a $LOG_FILE
    exit 1
@@ -23,6 +21,8 @@ else
    echo -e "$G yes you're a Root user. Welcome:) $N" | tee -a $LOG_FILE
    continue
 fi
+
+mkdir -p ${LOG_FOLDER}
 
 VALIDATE(){
     if [ $1 -ne 0 ];then
