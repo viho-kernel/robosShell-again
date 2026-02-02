@@ -75,17 +75,3 @@ systemctl daemon-reload
 systemctl enable user  &>>$LOG_FILE
 systemctl start user
 VALIDATE $? "Starting and enabling user"
-
-cp $SCRIPT_DIR/mongo.repo /etc/yum.repos.d/mongo.repo
-
-dnf install mongodb-mongosh -y &>>$LOG_FILE
-
-mongosh --host ${MONGO_HOST} </app/db/master-data.js
-VALIDATE $? "Loading products"
-
-systemctl restart user &>>$LOG_FILE
-
-VALIDATE $? "Restarting user" 
-
-systemctl status user &>>$LOG_FILE
-VALIDATE $? "Checking user status" 
