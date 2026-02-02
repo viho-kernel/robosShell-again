@@ -65,4 +65,4 @@ for name in "${services[@]}"; do
   echo -e "$M ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$N"
 done
 
-echo -e "$R All termination requests submitted. DNS cleanup attempted.$N"
+echo -e "$R All instance are terminated. DNS cleaned.$N"
