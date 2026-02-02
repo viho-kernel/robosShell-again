@@ -11,7 +11,7 @@ N="\e[0m"
 SCRIPT_DIR=${pwd}
 USER_ID=$(id -u)
 LOG_FOLDER="/var/log/Roboshop-Again-logs"
-LOG_FILES="${LOG_FOLDER}/$0.log"
+LOG_FILE="${LOG_FOLDER}/$0.log"
 
 
 mkdir -p ${LOG_FOLDER}
@@ -26,13 +26,15 @@ fi
 
 VALIDATE(){
     if [ $1 -ne 0 ];then
-      echo -e "$R $2 is unsuccesfull..." &>>${LOG_FILE}
+      echo -e "$R $2 is unsuccesfull..." &>> ${LOG_FILE}
     else
-      echo -e "$G $2 is successfull..." &>>${LOG_FILE}
+      echo -e "$G $2 is successfull..." &>> ${LOG_FILE}
     fi
 
 }
   
+cp $SCRIPT_DIR/mongo.conf /etc/yum.repos.d/mongo.repo
+
 dnf install mongodb-org -y &>>${LOG_FILE}
 VALIDATE $? "Installing MongoDB Server"
 
