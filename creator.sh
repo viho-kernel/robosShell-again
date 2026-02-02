@@ -53,7 +53,8 @@ do
     )
     fi
 
-    echo -R "$G ${name} instance created successfully. Instance ID: $C $INSTANCE_ID $N"
+    echo -e "$G ${name} instance created successfully. Instance ID: $C $INSTANCE_ID $N"
+
 
     fi
 
@@ -64,7 +65,8 @@ do
         --query 'Reservations[*].Instances[*].PublicIpAddress' \
         --output text
     )
-    RECORD_NAME="${ZONE_NAME}."
+    RECORD_NAME="${ZONE_NAME}"
+
     else
     IP=$(
         aws ec2 describe-instances \
