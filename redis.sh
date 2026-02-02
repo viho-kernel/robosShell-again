@@ -50,3 +50,4 @@ VALIDATE $? "Enabling redis"
 
 systemctl start redis &>> ${LOG_FILE}
 VALIDATE $? "Starting redis"
+#Hello
