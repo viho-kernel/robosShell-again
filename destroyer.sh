@@ -54,7 +54,7 @@ for name in "${services[@]}"; do
           }
         ]
       }"
-      echo -e "$G DNS record deleted: $C$RECORD_NAME → $IP$N"
+      echo -e "$G DNS record deleted: $C$RECORD_NAME --> $IP$N"
     else
       echo -e "$Y No IP found for $name, skipping DNS deletion.$N"
     fi
