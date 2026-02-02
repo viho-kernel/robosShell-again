@@ -51,7 +51,7 @@ else
   echo -e "$G User does exist"
 fi
 
-mkdir -p app &>> ${LOG_FILE}
+mkdir -p /app
 VALIDATE $? "Creating APP Directory."
 
 curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip &>>${LOG_FILE}
@@ -60,11 +60,11 @@ VALIDATE $? "Downloading Application code."
 cd /app
 VALIDATE $? "Moving to app directory"
 
-unzip /tmp/catalogue.zip &>>${LOG_FILE}
-VALIDATE $? "Unzipping the Code"
-
 rm -rf /app/* &>>${LOG_FILE}
 VALIDATE $? "Removing existing code"
+
+unzip /tmp/catalogue.zip &>>${LOG_FILE}
+VALIDATE $? "Unzipping the Code"
  
 npm install &>>${LOG_FILE}
 VALIDATE $? "Installing Dependencies"
